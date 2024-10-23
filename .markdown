@@ -1,0 +1,18 @@
+- src
+  - components
+    - HashtagFilter.tsx
+    - ImageCard.tsx
+    - ImageWithTags.tsx
+    - PhotoGallery.tsx
+  - data
+    - tags.tsx
+  - pages
+    - App.tsx
+  - hooks
+    - useInfiniteScroll.ts
+  - styles
+    - globals.css
+  - types
+    - types.tsx
+  - utils
+    - generatePlaceholderImages.ts
