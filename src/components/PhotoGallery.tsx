@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import generatePlaceholderImages from '../utils/generatePlaceholderImages';
 import { CustomPhoto } from '../types/types';
-import Gallery from 'react-photo-gallery';
+import { MasonryPhotoAlbum } from "react-photo-album";
+import "react-photo-album/masonry.css";
 import { tags } from '../data/tags';
-import ImageWithTags from './ImageWithTags';
+//import ImageWithTags from './ImageWithTags';
 import { Button } from '@nextui-org/react';
+import ImageWithTags from './ImageWithTags';
 
 
 const initialPhotos: CustomPhoto[] = generatePlaceholderImages(40); // ข้อมูลรูปภาพเริ่มต้น 40 รูป
@@ -29,7 +31,7 @@ const PhotoGallery = () => {
   useInfiniteScroll(loadMorePhotos, hasMore);
   const filterByTag = (tag: string) => {
     if (tag === selectedTag) {
-      setFilteredPhotos(photos); 
+      setFilteredPhotos(photos);
       setSelectedTag('');
     } else {
       setFilteredPhotos(photos.filter(photo => photo.hashtags.includes(tag)));
@@ -39,7 +41,7 @@ const PhotoGallery = () => {
 
   return (
     <div className="p-4">
-      <div className="flex flex-wrap rounded-b-lg justify-center gap-2 my-4 md:my-4">
+      <div className="flex flex-wrap rounded-md justify-center gap-2 my-4 md:my-4">
         {tags.map(tag => (
           <Button
             key={tag}
@@ -52,11 +54,17 @@ const PhotoGallery = () => {
         ))}
       </div>
 
-      <div className="my-4 py-5 px-4 md:p-4 mx-1 md:mx-10 lg:mx-48">
-        <Gallery
+      <div className="relative my-4 py-5 px-4 md:p-4 md:mx-20 lg:mx-5">
+        <MasonryPhotoAlbum
           photos={filteredPhotos}
-          direction={"column"}
-          renderImage={(props) => <ImageWithTags {...props} />}
+          render={{
+            extras: (_, { photo }) => (
+              <ImageWithTags photo={photo} layout={{
+                width: photo.width,
+                height: photo.height,
+              }} />
+            ),
+          }}
         />
 
         {!hasMore && <p className="text-center mt-4">ไม่มีรูปภาพเพิ่มเติม</p>}

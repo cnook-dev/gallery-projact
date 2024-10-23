@@ -1,7 +1,6 @@
 - src
   - components
     - HashtagFilter.tsx
-    - ImageCard.tsx
     - ImageWithTags.tsx
     - PhotoGallery.tsx
   - data

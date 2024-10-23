@@ -6,3 +6,7 @@ export interface CustomPhoto {
     hashtags: string[];
   }
   
+  export interface ImageWithTagsProps {
+    photo: CustomPhoto;
+    layout: { width: number; height: number };
+  }

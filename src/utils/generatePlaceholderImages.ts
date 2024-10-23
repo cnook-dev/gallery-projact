@@ -16,7 +16,7 @@ const generateUniqueHashtags = (count: number) => {
 const generatePlaceholderImages = (count: number): CustomPhoto[] => {
     return Array.from({ length: count }, (_, index) => {
         const widthPhoto = 350;// ความกว้างคงที่ 350 px
-        const heightPhoto = Math.floor(Math.random() * 200) + 200; // ความสูงสุ่มระหว่าง 200 ถึง 400 px
+        const heightPhoto = Math.floor(Math.random() * 500) + 400; // ความสูงสุ่มระหว่าง 400 ถึง 500 px
         const numHashtags = Math.floor(Math.random() * 6) + 1; // สุ่มแฮชแท็ก 1 ถึง 6
 
         return {
